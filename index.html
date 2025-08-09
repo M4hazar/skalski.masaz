@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="light dark" name="color-scheme"/>
+<title>Masaż Medyczny - Adam Skalski</title>
+<meta content="Mobilny masażysta. Masaż medyczny, tkanek głębokich i terapia punktów spustowych. Wrocław i okolice. Zadzwoń: +48 886 886 028" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind (CDN) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+      tailwind.config = {
+        theme: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui','Segoe UI','Roboto','Helvetica Neue','Arial','Noto Sans'] },
+          extend: { boxShadow: { card: '0 1px 2px rgb(0 0 0 / 0.06), 0 8px 24px rgb(0 0 0 / 0.06)' } }
+        },
+        darkMode: 'class'
+      }
+    </script>
+<!-- Wymuś motyw zanim strona mignie -->
+<script>
+      (function(){
+        try{
+          var stored = localStorage.getItem('theme');
+          var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var useDark = stored ? (stored==='dark') : systemDark;
+          document.documentElement.classList.toggle('dark', useDark);
+        }catch(e){}
+      })();
+    </script>
+<style>
+      :root{ --brand-50:#ecfdf5; --brand-300:#86efac; --brand-400:#34d399; --brand-500:#10b981; --brand-600:#0ea5a6; --brand-800:#064e3b }
+      .dark{ --brand-50:#052e2b; --brand-300:#34d399; --brand-400:#2dd4bf; --brand-500:#14b8a6; --brand-600:#10b981; --brand-800:#a7f3d0 }
+      .brand-gradient{ background-image:linear-gradient(90deg,var(--brand-500),var(--brand-600)) }
+      /* mniejsze przyciski cookies */
+      #cookieBanner button{ padding:.375rem .5rem; font-size:.75rem; border-radius:.5rem }
+    </style>
+<style>
+      /* Logo mark color & sizing */
+      .logo-mark{ display:inline-block }
+      .dark .logo-mark{ filter: invert(1) brightness(1.2); }
+      .loader-badge .logo-mark{ width:2rem; height:2rem; }
+      .hero-logo .logo-mark{ width:3.5rem; height:3.5rem; }
+    </style>
+<style>
+      /* Loader */
+      .ring{ border:6px solid transparent; border-top-color:var(--brand-500); border-right-color:var(--brand-600); animation:sk-spin 1s linear infinite }
+      @keyframes sk-spin{ to{ transform:rotate(360deg) } }
+      #pageLoader.hidden{ opacity:0; visibility:hidden }
+      @media (prefers-reduced-motion: reduce){ .ring{ animation:none } }
+    </style>
+<style>
+      /* Delikatne animacje wejścia */
+      .reveal-init [data-reveal]{ opacity:0; transform:translateY(12px) scale(.995) }
+      .reveal-in{ opacity:1; transform:none; transition-property:opacity,transform; transition-duration:600ms; transition-timing-function:cubic-bezier(.2,.7,.2,1) }
+      @media (prefers-reduced-motion: reduce){ .reveal-init [data-reveal]{ opacity:1; transform:none } }
+    </style>
+<!-- Ikony -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- OG -->
+<meta content="Masaż Medyczny — Adam Skalski" property="og:title"/>
+<meta content="Mobilny masażysta we Wrocławiu i okolicach. Zadzwoń: +48 886 886 028" property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://skalski-masaz.pl" property="og:url"/>
+<meta content="#ffffff" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#0b1220" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="upgrade-insecure-requests" http-equiv="Content-Security-Policy"/>
+<style>
+      /* Powiększony sygnet tylko w nagłówku i hero (bez filtrowania kolorów) */
+      header .logo-mark{ width:2.25rem; height:2.25rem; } /* ~36px */
+      .hero-logo .logo-mark{ width:4rem; height:4rem; }   /* ~64px */
+    </style>
+<!-- === SYGNET — ROZMIAR: ZMIENIAJ WARTOŚCI TUTAJ ===
+         Ustawiaj rozmiary w px. Zmiana poniżej działa w całej witrynie.
+         Przykład: --sygnet-size-global: 40px;
+    -->
+<style>
+      :root{
+        /* GŁÓWNY rozmiar (wpływa na większość miejsc) */
+        --sygnet-size-global: 36px;
+
+        /* Sekcje (nadpisują globalny w razie potrzeby) */
+        --sygnet-size-header: var(--sygnet-size-global);
+        --sygnet-size-hero:   64px;
+        --sygnet-size-footer: var(--sygnet-size-global);
+        --sygnet-size-timeline: var(--sygnet-size-global);
+        --sygnet-size-mobilebar: var(--sygnet-size-global);
+        --sygnet-size-loader: 32px;
+      }
+      /* Zastosowanie w sekcjach (ważniejsze niż klasy Tailwind) */
+      header img.logo-mark{ width:var(--sygnet-size-header)!important; height:var(--sygnet-size-header)!important; }
+      .hero-logo img.logo-mark{ width:var(--sygnet-size-hero)!important; height:var(--sygnet-size-hero)!important; }
+      footer img.logo-mark{ width:var(--sygnet-size-footer)!important; height:var(--sygnet-size-footer)!important; }
+      #timeline img.logo-mark{ width:var(--sygnet-size-timeline)!important; height:var(--sygnet-size-timeline)!important; }
+      .mobile-cta img.logo-mark{ width:var(--sygnet-size-mobilebar)!important; height:var(--sygnet-size-mobilebar)!important; }
+      #pageLoader img.logo-mark{ width:var(--sygnet-size-loader)!important; height:var(--sygnet-size-loader)!important; }
+    </style>
+<!-- === /SYGNET — ROZMIAR === -->
+<style>
+      /* DATE INPUT: ukryj natywną ikonę, aby nie dublowała się z naszym przyciskiem */
+      input[type="date"]::-webkit-calendar-picker-indicator{ opacity:0; display:none; }
+      input[type="date"]::-webkit-inner-spin-button,
+      input[type="date"]::-webkit-clear-button{ display:none; }
+      input[type="date"]{ -webkit-appearance: none; appearance: textfield; }
+    </style>
+<style>
+  /* Poświata aktywnego linku w nawigacji */
+  .nav-active {
+    box-shadow: 0 0 6px var(--brand-500);
+    border-radius: 0.5rem;
+    padding: 2px 6px;
+    transition: box-shadow 0.3s ease;
+  }
+</style>
+<style>
+  /* Kotwice przewijają się z marginesem na sticky header */
+  section[id] { scroll-margin-top: 88px; }
+</style>
+<style>
+  .service-card button, .service-card a {
+    font-size: 0.95rem !important;
+    padding: 0.6rem 1rem !important;
+    border-radius: 0.5rem !important;
+  }
+</style>
+<style>
+  /* Equal height fallback */
+  #uslugi .service-card{ height: 100%; }
+</style>
+<style>
+  .service-card .price {
+    font-size: 1.15rem !important;
+    font-weight: 600 !important;
+    color: #0f172a;
+  }
+  @media (prefers-color-scheme: dark) {
+    .service-card .price {
+      color: #f8fafc;
+    }
+  }
+</style>
+
+    <style>
+      /* Linia osi kroków pseudo-elementem (semantycznie poprawnie dla <ol>) */
+      @media (min-width: 768px){
+        #timeline::before{content:'';position:absolute;left:0;right:0;top:1.25rem;height:2px;background-color:rgb(226 232 240);}
+        .dark #timeline::before{background-color:rgb(30 41 59);}
+      }
+    </style>
+
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 reveal-init">
+<!-- Loader -->
+<div aria-live="polite" class="fixed inset-0 z-[80] grid place-items-center bg-white dark:bg-slate-950 transition-opacity duration-500" id="pageLoader" role="status">
+<div class="relative h-28 w-28">
+<div class="ring absolute inset-0 rounded-full"></div>
+<div class="loader-badge absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-2xl text-white brand-gradient shadow-xl">
+<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-8 w-8 object-contain" src="assets/sygnet-loader.png"/>
+</div>
+</div>
+<span class="sr-only">Ładowanie…</span>
+</div>
+<script>
+      (function(){ try{ var isDark=document.documentElement.classList.contains('dark'); var im=document.querySelector('#pageLoader img.logo-mark'); if(im){ im.src=isDark?'assets/sygnet-white.png':'assets/sygnet.png'; } }catch(e){} })();
+    </script>
+<!-- Pasek mobilny (CTA) -->
+<div class="mobile-cta fixed inset-x-0 bottom-4 z-50 mx-auto w-[min(46rem,92%)] rounded-2xl border border-slate-200 bg-white/90 p-3 shadow-lg backdrop-blur dark:border-slate-800 dark:bg-slate-950/80 sm:hidden">
+<div class="flex items-center justify-between gap-3">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-2xl grid place-items-center bg-white border border-slate-200 shadow-md dark:bg-slate-900 dark:border-slate-800">
+<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-7 w-7 object-contain" src="assets/sygnet.png"/>
+</div>
+<div>
+<p class="text-sm font-semibold">Adam Skalski</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Mobilny masaż — Wrocław i okolice</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Przełącz motyw" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" id="themeToggleMobile">
+<i class="h-4 w-4" data-lucide="moon"></i>
+<span class="toggle-text">Ciemny</span>
+</button>
+<a class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-white brand-gradient" href="tel:+48886886028">
+<i class="h-4 w-4" data-lucide="phone"></i> Zadzwoń
+          </a>
+</div>
+</div>
+</div>
+<!-- Header -->
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/70 backdrop-blur dark:border-slate-900 dark:bg-slate-950/60">
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="h-12 w-12 rounded-2xl grid place-items-center bg-white border border-slate-200 shadow-md dark:bg-slate-900 dark:border-slate-800">
+<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-7 w-7 object-contain" src="assets/sygnet.png"/>
+</div>
+<div>
+<p class="text-sm font-semibold leading-none">Adam Skalski</p>
+<p class="text-xs leading-none text-slate-500 dark:text-slate-400">Masaż Medyczny</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<nav class="hidden md:flex items-center gap-6 text-sm text-slate-700 dark:text-slate-200">
+<a class="nav-active" href="#home">Home</a>
+<a class="hover:text-[color:var(--brand-600)]" href="#uslugi">Usługi i Cennik</a>
+<a class="hover:text-[color:var(--brand-600)]" href="#jak-to-dziala">Jak to działa?</a>
+<a class="hover:text-[color:var(--brand-600)]" href="#kontakt">Kontakt</a>
+<a class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-white brand-gradient" href="tel:+48886886028">
+<i class="h-4 w-4" data-lucide="phone"></i> Zadzwoń
+            </a>
+</nav>
+<button aria-label="Przełącz motyw" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" id="themeToggle">
+<i class="h-4 w-4" data-lucide="moon"></i>
+<span class="toggle-text">Ciemny</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero -->
+<section class="relative overflow-hidden pb-32 sm:pb-40" data-reveal="" id="home">
+<div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+<svg aria-hidden="true" class="absolute -top-40 left-1/2 h-[46rem] -translate-x-1/2 opacity-30" viewbox="0 0 1155 678">
+<defs><lineargradient id="grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="var(--brand-400)"></stop><stop offset="100%" stop-color="var(--brand-600)"></stop></lineargradient></defs>
+<path d="M317.5 0C198 0 0 140 0 259.5S165 521 317.5 521 635 441 827 441s328 97 328 97V0Z" fill="url(#grad)"></path>
+</svg>
+</div>
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 grid items-center gap-10 py-16 sm:py-20 md:grid-cols-2">
+<div>
+<span class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-medium" style="border-color:var(--brand-300);background-color:var(--brand-50);color:var(--brand-800)">
+<i class="h-4 w-4" data-lucide="truck"></i> Masaż z dojazdem do klienta
+          </span>
+<h1 class="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-[color:var(--brand-600)] to-[color:var(--brand-500)] bg-clip-text text-transparent">Masażysta z dojazdem, Wrocław i okolice</h1>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Pomagam wrócić do swobody ruchu i lepszego samopoczucia, a to wszystko bez wychodzenia z domu. Umawiam wizyty we Wrocławiu i okolicach.</p>
+<div class="mt-6 flex flex-wrap items-center gap-3">
+<a class="group inline-flex items-center gap-2 rounded-xl px-5 py-3 text-white shadow-md transition hover:shadow-lg brand-gradient" href="tel:+48886886028"><i data-lucide="phone"></i> Zadzwoń +48 886 886 028 <i class="transition group-hover:translate-x-0.5" data-lucide="arrow-right"></i></a>
+<a class="inline-flex items-center gap-2 rounded-xl border px-4 py-3 shadow-sm" href="#kontakt" style="border-color:var(--brand-300);background-color:var(--brand-50);color:var(--brand-800)"><i class="h-5 w-5" data-lucide="calendar"></i> Umów wizytę</a>
+</div>
+<p class="mt-4 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400"><i class="h-4 w-4" data-lucide="clock"></i> Rezerwacje przyjmowane codziennie w godzinach 8:00–20:00</p>
+</div>
+<div class="relative">
+<div class="relative mx-auto w-full max-w-md rounded-3xl bg-white p-6 shadow-card border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
+<div class="mb-4 flex items-center gap-3">
+<img alt="Adam Skalski — avatar" class="h-14 w-14 rounded-2xl object-cover border border-slate-200 dark:border-slate-800" onerror="this.remove()" src="assets/avatar.jpg"/>
+<div>
+<p class="font-semibold text-slate-900 dark:text-slate-100">Adam Skalski</p>
+<p class="text-sm text-slate-500 dark:text-slate-400">Dyplomowany Masażysta</p>
+</div>
+</div>
+<div class="aspect-[4/3] overflow-hidden rounded-2xl p-0 bg-slate-100 dark:bg-slate-800 grid place-items-center hero-logo">
+<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-14 w-14 object-contain" src="assets/sygnet.png"/>
+</div>
+<p class="mt-4 text-sm text-slate-600 dark:text-slate-300">Przyjeżdżam z kompletnym wyposażeniem, w tym profesjonalnym stołem oraz wszystkimi niezbędnymi środkami higieny. Jako dyplomowany masażysta potrzebuję jedynie niewielkiej przestrzeni i spokojnej atmosfery.</p>
+</div>
+</div>
+</div>
+
+<div class="mt-12 flex justify-center space-x-6">
+<a aria-label="Facebook" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transform hover:scale-110 transition" href="https://www.facebook.com/skalski.masaz/" rel="noopener" target="_blank">
+<svg class="h-8 w-8" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99h-2.3V12h2.3V9.8c0-2.28 1.36-3.54 3.45-3.54.99 0 2.03.18 2.03.18v2.24h-1.14c-1.13 0-1.48.7-1.48 1.42V12h2.52l-.4 2.88h-2.12v6.99A10 10 0 0 0 22 12"></path>
+</svg>
+</a>
+<a aria-label="Instagram" class="text-slate-600 dark:text-slate-300 hover:text-pink-500 dark:hover:text-pink-400 transform hover:scale-110 transition" href="https://www.instagram.com/skalski.masaz" rel="noopener" target="_blank">
+<svg class="h-8 w-8" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7m0 2h10c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3m10.25 1.75a1 1 0 0 0-1 1 1 1 0 0 0 1 1 1 1 0 0 0 1-1 1 1 0 0 0-1-1M12 7a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3Z"></path>
+</svg>
+</a>
+<a aria-label="TikTok" class="text-slate-600 dark:text-slate-300 hover:text-black dark:hover:text-white transform hover:scale-110 transition" href="https://www.tiktok.com/@skalski.masaz" rel="noopener" target="_blank">
+<svg class="h-8 w-8" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.5 2c.84 0 1.64.16 2.37.46a5.93 5.93 0 0 0 1.68 4.31 5.93 5.93 0 0 0 4.31 1.68c.3.73.46 1.53.46 2.37v2.12a8.62 8.62 0 0 1-5.88-2.38v6.38a5.25 5.25 0 1 1-5.25-5.25c.29 0 .57.03.85.08v2.13a2.87 2.87 0 1 0 2.5 2.84V2Z"></path>
+</svg>
+</a>
+</div>
+</section><div class="h-px bg-slate-200 dark:bg-slate-700 opacity-50"></div>
+<!-- O MNIE (auto-dodane w v9) -->
+<!-- Usługi (kafelki + modal) -->
+<section class="py-28 sm:py-24 min-h-[80vh]" data-reveal="" id="uslugi">
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Usługi i cennik</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Kliknij kafelek, aby zobaczyć opis oraz szybki przycisk „Zadzwoń”.</p>
+<div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Uniwersalny masaż na napięte plecy i kark. Poprawia krążenie, rozluźnia mięśnie i przywraca lekkość w ciele." data-name="Masaż klasyczny" data-price="90 zł" data-time="50 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż klasyczny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">90 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 50 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Relaks i poprawa krążenia dla całego ciała.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Terapia ukierunkowana na ból i ograniczenia ruchu. Precyzyjna praca wzdłuż tkanek, aby uwolnić przeciążenia." data-name="Masaż leczniczy" data-price="100 zł" data-time="55 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż leczniczy</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">100 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 55 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Skuteczna pomoc w dolegliwościach bólowych.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Wolniejszy rytm, spokojne techniki i wyciszenie. Dla redukcji stresu i odpoczynku całego ciała." data-name="Masaż relaksacyjny" data-price="120 zł" data-time="65 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż relaksacyjny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">120 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 65 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Głębokie odprężenie i redukcja stresu.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Delikatne, rytmiczne techniki wspierające odpływ limfy. Zmniejsza obrzęki i uczucie ciężkości." data-name="Masaż limfatyczny" data-price="100 zł" data-time="60 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż limfatyczny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">100 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 60 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Wsparcie drenażu i redukcja obrzęków.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Specjalistyczna praca na mięśniach żwaczowych od wewnątrz policzka. Pomocna przy bruksizmie i napięciach stawu skroniowo‑żuchwowego — w pełnym reżimie higienicznym." data-name="Masaż transbukalny" data-price="130 zł" data-time="30 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż transbukalny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">130 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 30 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Terapia mięśni twarzy od wewnątrz policzków.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Kompleksowa sesja od stóp do karku. Połączenie technik klasycznych i powięziowych dla pełnego rozluźnienia." data-name="Masaż całego ciała" data-price="220 zł" data-time="120 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż całego ciała</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">220 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 120 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kompleksowa regeneracja od stóp do głów.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Intensywna praca na mięśniach dla osób aktywnych fizycznie." data-name="Masaż sportowy" data-price="150 zł" data-time="60 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż sportowy</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">150 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 60 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Regeneracja i przygotowanie mięśni do wysiłku.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Bezpieczny i relaksujący masaż dla kobiet w ciąży." data-name="Masaż prenatalny" data-price="130 zł" data-time="50 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż prenatalny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">130 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 50 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Bezpieczny relaks dla kobiet w ciąży.</p>
+</article>
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Specjalistyczne techniki terapii manualnej w celu poprawy funkcji stawów i mięśni." data-name="Terapia manualna" data-price="140 zł" data-time="45 min">
+<div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Terapia manualna</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">140 zł</span></div>
+<p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 45 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Indywidualna praca nad problemem ruchowym.</p>
+</article>
+</div>
+<p class="mt-4 text-xs text-slate-500 dark:text-slate-400 flex items-start gap-2"><i class="h-4 w-4 mt-0.5 text-[color:var(--brand-600)]" data-lucide="info"></i><span>Ceny orientacyjne. Zakres wizyty i ewentualne koszty dojazdu potwierdzimy telefonicznie.</span></p>
+</div>
+<!-- Modal -->
+<div class="fixed inset-0 z-[70] hidden" id="serviceModal">
+<div class="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+<div class="absolute left-1/2 top-1/2 w-[min(34rem,92%)] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900" style="height:85%;">
+<div class="flex items-start justify-between gap-4">
+<div>
+<h3 class="text-lg font-semibold" id="mTitle">Usługa</h3>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300"><span id="mTime">Czas</span> • <span id="mPrice">Cena</span></p>
+</div>
+<button aria-label="Zamknij" class="rounded-lg p-1 hover:bg-slate-100 dark:hover:bg-slate-800" id="mClose"><i data-lucide="x"></i></button>
+</div>
+<p class="mt-4 text-sm text-slate-700 dark:text-slate-300" id="mDesc">Opis</p>
+<div class="mt-6 flex flex-wrap gap-2">
+<a class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-white brand-gradient" href="tel:+48886886028" id="mCall"><i class="h-4 w-4" data-lucide="phone"></i> Zadzwoń</a>
+<button class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200" id="mAdd"><i class="h-4 w-4" data-lucide="plus"></i> Dodaj do formularza</button>
+</div>
+</div>
+</div>
+</section><div class="h-px bg-slate-200 dark:bg-slate-700 opacity-50"></div>
+<!-- Jak to działa -->
+<section class="py-16 sm:py-20" data-reveal="" id="jak-to-dziala">
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Jak wygląda współpraca — krok po kroku</h2>
+<div class="mt-10">
+<ol id="timeline" class="relative md:grid md:grid-cols-4 md:gap-8">
+<li class="relative flex items-start gap-4 md:block md:text-center">
+<div class="relative z-10 grid h-10 w-10 place-items-center rounded-full text-white ring-2 ring-white dark:ring-slate-950 brand-gradient">1</div>
+<div class="mt-0.5 md:mt-4">
+<div class="flex items-center gap-2 text-sm font-semibold justify-start md:justify-center"><i class="h-4 w-4 text-[color:var(--brand-600)]" data-lucide="phone"></i><span>Zgłoszenie</span></div>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300 md:max-w-xs md:mx-auto">Zadzwoń lub uzupełnij formularz. Podaj lokalizację i preferencje.</p>
+</div>
+</li>
+<li class="relative mt-8 flex items-start gap-4 md:mt-0 md:block md:text-center">
+<div class="relative z-10 grid h-10 w-10 place-items-center rounded-full text-white ring-2 ring-white dark:ring-slate-950 brand-gradient">2</div>
+<div class="mt-0.5 md:mt-4">
+<div class="flex items-center gap-2 text-sm font-semibold justify-start md:justify-center"><i class="h-4 w-4 text-[color:var(--brand-600)]" data-lucide="clipboard-check"></i><span>Ustalenie szczegółów</span></div>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300 md:max-w-xs md:mx-auto">Krótki wywiad i dobór usługi. Potwierdzamy termin i czas trwania.</p>
+</div>
+</li>
+<li class="relative mt-8 flex items-start gap-4 md:mt-0 md:block md:text-center">
+<div class="relative z-10 grid h-10 w-10 place-items-center rounded-full text-white ring-2 ring-white dark:ring-slate-950 brand-gradient">3</div>
+<div class="mt-0.5 md:mt-4">
+<div class="flex items-center gap-2 text-sm font-semibold justify-start md:justify-center"><i class="h-4 w-4 text-[color:var(--brand-600)]" data-lucide="truck"></i><span>Dojazd i przygotowanie</span></div>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300 md:max-w-xs md:mx-auto">Przyjeżdżam pod wskazany adres. Szybkie przygotowanie stanowiska.</p>
+</div>
+</li>
+<li class="relative mt-8 flex items-start gap-4 md:mt-0 md:block md:text-center">
+<div class="relative z-10 grid h-10 w-10 place-items-center rounded-full text-white ring-2 ring-white dark:ring-slate-950 brand-gradient">4</div>
+<div class="mt-0.5 md:mt-4">
+<div class="flex items-center gap-2 text-sm font-semibold justify-start md:justify-center">
+<i class="h-4 w-4 text-[color:var(--brand-600)]" data-lucide="heart"></i>
+<span>Zabieg i zalecenia</span>
+</div>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300 md:max-w-xs md:mx-auto">Wykonuję masaż i przekazuję zalecenia po wizycie.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center gap-8 mt-20 sm:mt-28">
+<div class="max-w-xl">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Obszar działania</h2>
+<p class="mt-3 text-slate-600 dark:text-slate-300">Świadczę usługi na terenie Wrocławia i okolic. Dojazd ustalam indywidualnie podczas wywiadu wstępnego.</p>
+<a class="mt-4 inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" href="https://maps.app.goo.gl/zEY8jzWXrHCPmW1w5" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="map-pin"></i> Otwórz w Mapach Google</a>
+</div>
+<div class="relative h-72 w-full max-w-xl overflow-hidden rounded-3xl bg-white p-4 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
+<div class="absolute inset-0 grid place-items-center">
+<div class="h-56 w-56 rounded-full border-2" style="border-color:var(--brand-300)"></div>
+<div class="absolute h-40 w-40 rounded-full border" style="border-color:var(--brand-300)"></div>
+<div class="absolute h-24 w-24 rounded-full border" style="border-color:var(--brand-300)"></div>
+<div class="absolute grid place-items-center">
+<div class="grid place-items-center rounded-xl p-3 text-white shadow-md brand-gradient"><i class="h-5 w-5" data-lucide="map-pin"></i></div>
+<p class="mt-2 text-xs text-slate-500 dark:text-slate-400">Wrocław</p>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 rounded-full px-3 py-1 text-xs font-medium" style="background-color:var(--brand-50);color:var(--brand-800)">Orientacyjny obszar dojazdu</div>
+</div>
+</div>
+</section><div class="h-px bg-slate-200 dark:bg-slate-700 opacity-50"></div>
+<!-- Obszar działania -->
+<!-- Kontakt -->
+<section class="py-16 sm:py-20" data-reveal="" id="kontakt">
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 grid gap-10 md:grid-cols-2">
+<div>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Kontakt</h2>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej przeprowadzić wywiad telefonicznie lub za pośrednictwem SMS. W wiadomości proszę podać adres oraz preferowane terminy.</p>
+<div class="mt-6 space-y-3">
+<a class="flex w-max items-center gap-3 rounded-xl px-4 py-3" href="tel:+48886886028" style="background-color:var(--brand-50);color:var(--brand-800);border:1px solid var(--brand-300)"><i class="h-5 w-5" data-lucide="phone"></i> +48 886 886 028</a>
+<a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="mailto:skalski.masaz@gmail.com"><i class="h-5 w-5" data-lucide="mail"></i> skalski.masaz@gmail.com</a>
+<a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="https://www.facebook.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="facebook"></i> Masaż Medyczny - Adam Skalski</a>
+<a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="https://maps.app.goo.gl/zEY8jzWXrHCPmW1w5" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="map-pin"></i> Wrocław i okolice</a>
+</div>
+</div>
+<div class="rounded-3xl bg-white p-6 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
+<h3 class="text-lg font-semibold">Szybkie zgłoszenie online</h3>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane, a formularz przygotuję SMS. Wybierz <strong>datę</strong> oraz <strong>porę dnia</strong>.</p>
+<form class="mt-5 space-y-4" id="smsForm" onsubmit="return false;">
+<div class="grid gap-4 sm:grid-cols-2">
+<div>
+<label class="mb-1 block text-sm text-slate-600 dark:text-slate-300" for="fName">Imię</label>
+<input autocomplete="name" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fName" name="name" placeholder="Twoje imię"/>
+</div>
+<div>
+<label class="mb-1 block text-sm text-slate-600 dark:text-slate-300" for="fService">Usługa</label>
+<select class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fService" name="service">
+<option>Masaż klasyczny</option>
+<option>Masaż leczniczy</option>
+<option>Masaż relaksacyjny</option>
+<option>Masaż limfatyczny</option>
+<option>Masaż transbukalny</option>
+<option>Masaż całego ciała</option>
+<option>Masaż sportowy</option>
+<option>Masaż prenatalny</option>
+<option>Terapia manualna</option>
+</select>
+</div>
+<div class="sm:col-span-2">
+<label class="mb-1 block text-sm text-slate-600 dark:text-slate-300" for="fWhere">Adres wizyty</label>
+<input autocomplete="street-address" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fWhere" name="where" placeholder="np. Wrocław, Krzyki, ul. ..."/>
+</div>
+<div class="relative">
+<label for="fDate">Data wizyty</label>
+<button aria-label="Otwórz kalendarz" class="absolute right-2 top-[34px] grid h-7 w-7 place-items-center rounded-md text-slate-700 hover:text-slate-700 dark:hover:text-slate-200 dark:text-slate-200" id="datePickerBtn" type="button"><i class="h-4 w-4" data-lucide="calendar"></i></button>
+<input class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 pr-10 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fDate" name="date" type="date"/>
+</div>
+<div>
+<label class="mb-1 block text-sm text-slate-600 dark:text-slate-300" for="fPeriod">Preferowana pora dnia</label>
+<select class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fPeriod" name="period">
+<option value="morning">Rano (08:00–12:00)</option>
+<option value="afternoon">Po południu (12:00–16:00)</option>
+<option value="evening">Wieczorem (16:00–20:00)</option>
+</select>
+<p class="mt-1 text-xs text-slate-500 dark:text-slate-400" id="fDateHelp">Wybierz dzień i porę: rano 8–12, po południu 12–16, wieczorem 16–20.</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3 pt-1">
+<a class="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-white shadow-md transition hover:shadow-lg brand-gradient" href="#" id="smsBtn"><i class="h-5 w-5" data-lucide="message-circle"></i> Wyślij szkic SMS</a>
+<a class="inline-flex items-center gap-2 rounded-xl border px-5 py-3 shadow-sm" href="tel:+48886886028" style="border-color:var(--brand-300);color:var(--brand-800);background-color:var(--brand-50)"><i class="h-5 w-5" data-lucide="phone"></i> Wolisz zadzwonić</a>
+</div>
+</form>
+</div>
+</div>
+</section>
+<footer class="mt-20 border-t border-slate-200 bg-white/70 backdrop-blur dark:border-slate-800 dark:bg-slate-950/60">
+<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+<!-- Left: brand -->
+<div class="flex items-center gap-3">
+<div class="h-14 w-14 rounded-2xl grid place-items-center bg-white border border-slate-200 shadow-md dark:bg-slate-900 dark:border-slate-800">
+<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-9 w-9 object-contain" src="assets/sygnet.png"/>
+</div>
+<div>
+<p class="text-sm font-semibold">Masaż Medyczny - Adam Skalski</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Dyplomowany masażysta, Wrocław i okolice</p>
+</div>
+</div>
+<!-- Right: © + socials in one row, then links, then SSL -->
+<div class="flex flex-col items-center sm:items-end gap-2 text-xs text-slate-500 dark:text-slate-400 w-full sm:w-auto">
+<!-- Row: © + Socials -->
+<div class="w-full flex flex-wrap items-center justify-center sm:justify-end gap-3">
+<div>© <span id="year"></span> skalski-masaz.pl — Wszelkie prawa zastrzeżone</div>
+<div class="flex items-center gap-2">
+<a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.facebook.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="facebook"></i><span class="sr-only">Facebook</span></a>
+<a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.instagram.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="instagram"></i><span class="sr-only">Instagram</span></a>
+<a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.tiktok.com/@skalski.masaz" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="music-2"></i><span class="sr-only">TikTok</span></a>
+</div>
+</div>
+<!-- Row: privacy & cookies -->
+<div class="flex items-center gap-4">
+<button class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700" id="openPrivacy">Polityka prywatności</button>
+<button class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700" id="openCookieSettings">Ustawienia cookies</button>
+</div>
+<!-- SSL -->
+<div class="hidden items-center gap-1 opacity-80" id="sslInfo"><i class="h-3.5 w-3.5" data-lucide="lock"></i><span class="ssl-text">Połączenie szyfrowane SSL</span></div>
+</div>
+</div>
+</footer>
+<!-- Cookies banner & privacy modal -->
+<div class="fixed inset-x-0 bottom-4 z-[60] mx-auto hidden w-[min(56rem,94%)] rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-900/95" id="cookieBanner">
+<div class="flex items-start gap-3">
+<div class="grid h-9 w-9 place-items-center rounded-lg text-white brand-gradient shrink-0"><i class="h-4 w-4" data-lucide="cookie"></i></div>
+<div class="text-sm text-slate-700 dark:text-slate-200">
+<p class="font-medium">Pliki cookies</p>
+<p class="mt-1 text-slate-600 dark:text-slate-300 text-xs">Używamy niezbędnych cookies (np. motyw, zgoda). Opcjonalne analityczne możesz włączyć w ustawieniach. Szczegóły w <button class="underline hover:no-underline" id="openPrivacyFromBanner">polityce prywatności</button>.</p>
+</div>
+<div class="ml-auto flex flex-wrap gap-1">
+<button class="rounded-xl border border-slate-200 px-2 py-1 text-xs dark:border-slate-700" id="cookieReject">Odrzuć</button>
+<button class="rounded-xl border border-slate-200 px-2 py-1 text-xs dark:border-slate-700" id="cookieSettings">Ustawienia</button>
+<button class="rounded-xl px-2 py-1 text-xs text-white brand-gradient" id="cookieAccept">Akceptuj</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-[70] hidden" id="cookieModal">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute left-1/2 top-1/2 w-[min(36rem,92%)] -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+<div class="flex items-start justify-between gap-4">
+<h3 class="text-lg font-semibold">Ustawienia cookies</h3>
+<button class="rounded-lg p-1 hover:bg-slate-100 dark:hover:bg-slate-800" data-close="cookieModal"><i data-lucide="x"></i></button>
+</div>
+<div class="mt-4 space-y-4 text-sm">
+<label class="flex items-start gap-3">
+<input checked="" class="mt-1" disabled="" type="checkbox"/>
+<div><p class="font-medium">Niezbędne</p><p class="text-slate-600 dark:text-slate-300">Zapamiętywanie motywu (jasny/ciemny) i samej zgody na cookies.</p></div>
+</label>
+<label class="flex items-start gap-3">
+<input class="mt-1" id="consentAnalytics" type="checkbox"/>
+<div><p class="font-medium">Analityczne (opcjonalne)</p><p class="text-slate-600 dark:text-slate-300">Anonimowe statystyki odwiedzin. Domyślnie wyłączone.</p></div>
+</label>
+</div>
+<div class="mt-6 flex justify-end gap-2">
+<button class="rounded-xl border border-slate-200 px-2 py-1 text-xs dark:border-slate-700" data-close="cookieModal">Anuluj</button>
+<button class="rounded-xl px-2 py-1 text-xs text-white brand-gradient" id="cookieSave">Zapisz</button>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 z-[70] hidden" id="privacyModal">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute left-1/2 top-1/2 h-[80vh] w-[min(48rem,94%)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+<div class="flex items-center justify-between border-b border-slate-200 p-4 dark:border-slate-800">
+<h3 class="text-lg font-semibold">Polityka prywatności &amp; cookies</h3>
+<button class="rounded-lg p-1 hover:bg-slate-100 dark:hover:bg-slate-800" data-close="privacyModal"><i data-lucide="x"></i></button>
+</div>
+<div class="h-[calc(80vh-64px)] overflow-y-auto p-6 text-sm text-slate-700 dark:text-slate-300">
+<p class="mb-3"><strong>Administrator danych:</strong> Adam Skalski (działalność mobilna, Wrocław i okolice), kontakt: <a class="underline" href="mailto:skalski.masaz@gmail.com">skalski.masaz@gmail.com</a>, tel. +48 886 886 028.</p>
+<p class="mb-3">Przetwarzam dane wyłącznie w celu obsługi zapytań i rezerwacji wizyt — imię, wybrana usługa, adres wizyty, preferowana data i pora dnia, treść wiadomości. Podanie danych jest dobrowolne, lecz niezbędne do realizacji zapytania.</p>
+<p class="mb-3">Podstawą prawną jest art. 6 ust. 1 lit. b i f RODO (konieczność podjęcia działań przed zawarciem umowy; prawnie uzasadniony interes). Odbiorcami mogą być dostawcy hostingu/poczty na podstawie umów powierzenia. Dane nie są przekazywane do państw trzecich.</p>
+<p class="mb-3">Okres przechowywania: przez czas niezbędny do obsługi zapytania/realizacji wizyty oraz przez okres wymagany przepisami (np. rozliczenia).</p>
+<p class="mb-4">Twoje prawa: dostępu do danych, sprostowania, usunięcia, ograniczenia, przenoszenia, sprzeciwu. Skarga do PUODO.</p>
+<h4 class="mt-4 mb-2 font-semibold">Cookies</h4>
+<p class="mb-2">Wykorzystuję cookies <em>niezbędne</em> do działania strony (motyw, zgoda) oraz opcjonalne cookies <em>analityczne</em> (statystyki). Domyślnie analityczne są wyłączone.</p>
+<ul class="list-disc pl-5">
+<li>localStorage: <code>theme</code> — motyw strony</li>
+<li>localStorage: <code>cookieConsent_v1</code> — preferencje cookies</li>
+</ul>
+<p class="mt-3">Więcej informacji: skontaktuj się e‑mailem.</p>
+</div>
+<div class="border-t border-slate-200 p-4 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">Ostatnia aktualizacja: sierpień 2025</div>
+</div>
+</div>
+<script>
+      // Ikony
+      lucide.createIcons();
+      // Rok w stopce
+      (function(){ var y=document.getElementById('year'); if(y) y.textContent=new Date().getFullYear(); })();
+
+      // Motyw + obserwacja systemu
+      var mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      var followSystem = !localStorage.getItem('theme');
+      function setLogoVariant(){
+  try{
+    var isDark=document.documentElement.classList.contains('dark');
+    var src=isDark?'assets/sygnet-white.png':'assets/sygnet.png';
+    document.querySelectorAll('img.logo-mark').forEach(function(img){ if(img.getAttribute('src')!==src){ img.setAttribute('src',src); }});
+  }catch(e){}
+}
+function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !!isDark); setLogoVariant(); }
+      function syncToggleLabels(){
+        var isDark=document.documentElement.classList.contains('dark');
+        document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(function(btn){
+          var t=btn && btn.querySelector('.toggle-text');
+          var i=btn && btn.querySelector('[data-lucide]');
+          if(t) t.textContent = isDark ? 'Jasny' : 'Ciemny';
+          if(i) i.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+        });
+        lucide.createIcons();
+      }
+      function setTheme(t){
+        followSystem=false;
+        try{ localStorage.setItem('theme', t); }catch(e){}
+        applyTheme(t==='dark');
+        syncToggleLabels();
+      }
+      ;['themeToggle','themeToggleMobile'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(el) el.addEventListener('click', function(){ setTheme(document.documentElement.classList.contains('dark') ? 'light' : 'dark'); });
+      });
+      if(mql){
+        var onChange=function(e){ if(followSystem && !localStorage.getItem('theme')){ applyTheme(e.matches); syncToggleLabels(); } };
+        if(mql.addEventListener) mql.addEventListener('change', onChange); else if(mql.addListener) mql.addListener(onChange);
+      }
+      syncToggleLabels();
+
+      // Loader hide — po załadowaniu + bezpieczny timeout
+      (function(){
+        var loader=document.getElementById('pageLoader');
+        if(!loader) return;
+        var hide=function(){ loader.classList.add('hidden'); };
+        if(document.readyState==='complete'){ setTimeout(hide, 200); }
+        else { window.addEventListener('load', function(){ setTimeout(hide, 200); }); }
+        // awaryjnie schowaj po 3s nawet przy błędach assetów
+        setTimeout(hide, 3000);
+      })();
+
+      // Reveal-on-scroll
+      (function(){
+        var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(prefersReduced){ document.body.classList.remove('reveal-init'); return; }
+        var els = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+        if(!('IntersectionObserver' in window)){
+          els.forEach(function(el){ el.classList.add('reveal-in'); });
+          document.body.classList.remove('reveal-init');
+          return;
+        }
+        var io = new IntersectionObserver(function(entries, obs){
+          entries.forEach(function(entry){ if(entry.isIntersecting){ entry.target.classList.add('reveal-in'); obs.unobserve(entry.target); } });
+        }, { rootMargin:'0px 0px -10% 0px', threshold:0.1 });
+        els.forEach(function(el){ io.observe(el); });
+        window.addEventListener('load', function(){ setTimeout(function(){ document.body.classList.remove('reveal-init'); }, 300); });
+      })();
+
+      // Builder SMS (data + pora dnia)
+      function buildSmsBody(name, service, where, when){
+        var parts=['Dzień dobry, tutaj '+(name||''),'chciałbym umówić: '+(service||'masaż'), where?'miejsce: '+where:'', when?'termin: '+when:''].filter(Boolean);
+        return encodeURIComponent(parts.join('; '));
+      }
+      var smsBtn=document.getElementById('smsBtn');
+      var dateInput=document.getElementById('fDate');
+      var periodSelect=document.getElementById('fPeriod');
+      // Ikonka kalendarza otwiera natywny wybór daty (fallback: focus)
+      try{
+        var dateBtn = document.getElementById('datePickerBtn');
+        if (dateBtn) {
+          dateBtn.addEventListener('click', function(){
+            try {
+              if (dateInput && typeof dateInput.showPicker === 'function') { dateInput.showPicker(); }
+              else if (dateInput) { dateInput.focus(); }
+            } catch(e){ if (dateInput) dateInput.focus(); }
+          });
+        }
+      }catch(e){}
+
+      var PERIODS={ morning:{label:'rano (08:00–12:00)'}, afternoon:{label:'po południu (12:00–16:00)'}, evening:{label:'wieczorem (16:00–20:00)'} };
+      function pad2(n){return String(n).padStart(2,'0');}
+      function todayStr(){ var d=new Date(); return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
+      function fmtDate(val){ if(!val) return ''; var p=val.split('-'); if(p.length!==3) return val; return p[2]+'.'+p[1]+'.'+p[0]; }
+      function updateSms(){
+        var name=(document.getElementById('fName')||{}).value||''; name=name.trim();
+        var service=(document.getElementById('fService')||{}).value||''; service=service.trim();
+        var where=(document.getElementById('fWhere')||{}).value||''; where=where.trim();
+        var d=fmtDate(dateInput && dateInput.value ? dateInput.value : '');
+        var prKey=periodSelect && periodSelect.value; var pr=prKey && PERIODS[prKey] ? PERIODS[prKey].label : '';
+        var when=[d, pr].filter(Boolean).join(', ');
+        if(smsBtn) smsBtn.href='sms:+48886886028?body='+buildSmsBody(name, service, where, when);
+      }
+      (function(){ if(dateInput){ try{ dateInput.min=todayStr(); if(!dateInput.value) dateInput.value=todayStr(); }catch(e){} } })();
+      ;['fName','fService','fWhere'].forEach(function(id){ var el=document.getElementById(id); if(el) el.addEventListener('input', updateSms); });
+      if(dateInput){ ['change','input','blur'].forEach(function(ev){ dateInput.addEventListener(ev, updateSms); }); }
+      if(periodSelect){ periodSelect.addEventListener('change', updateSms); }
+      updateSms();
+
+      // Modal usług + "Dodaj do formularza" (synchronizacja)
+      (function(){
+        function qs(s, root){ return (root||document).querySelector(s); }
+        function qsa(s, root){ return Array.prototype.slice.call((root||document).querySelectorAll(s)); }
+        var modal=qs('#serviceModal'); var mTitle=qs('#mTitle'); var mTime=qs('#mTime'); var mPrice=qs('#mPrice'); var mDesc=qs('#mDesc'); var mAdd=qs('#mAdd'); var mClose=qs('#mClose');
+        function setSelectTo(text){ var sel=qs('#fService'); if(!sel || !text) return; var target=String(text).trim().toLowerCase(); var found=false; for(var i=0;i<sel.options.length;i++){ var opt=sel.options[i]; if(opt.text.trim().toLowerCase()===target){ sel.selectedIndex=i; found=true; break; } } if(!found){ for(var j=0;j<sel.options.length;j++){ var opt2=sel.options[j]; if(opt2.text.toLowerCase().indexOf(target)>=0){ sel.selectedIndex=j; found=true; break; } } } sel.dispatchEvent(new Event('input', {bubbles:true})); updateSms(); }
+        function open(card){ mTitle.textContent=card.dataset.name||''; mTime.textContent=card.dataset.time||''; mPrice.textContent=card.dataset.price||''; mDesc.textContent=card.dataset.desc||''; modal.classList.remove('hidden'); if(window.lucide){ lucide.createIcons(); } }
+        function close(){ modal.classList.add('hidden'); }
+        qsa('#uslugi .service-card').forEach(function(card){ card.addEventListener('click', function(){ open(card); }); });
+        if(mClose) mClose.addEventListener('click', close);
+        if(modal) modal.addEventListener('click', function(e){ if(e.target===modal) close(); });
+        if(mAdd) mAdd.addEventListener('click', function(){ setSelectTo(mTitle && mTitle.textContent); close(); var form=qs('#kontakt'); if(form){ form.scrollIntoView({behavior:'smooth'}); } });
+      })();
+
+      // Cookies proste
+      var CONSENT_KEY='cookieConsent_v1';
+      function getConsent(){ try{ return JSON.parse(localStorage.getItem(CONSENT_KEY)); }catch(e){ return null; } }
+      function saveConsent(obj){ try{ localStorage.setItem(CONSENT_KEY, JSON.stringify(obj)); }catch(e){} }
+      (function initCookies(){
+        var banner=document.getElementById('cookieBanner'); var modal=document.getElementById('cookieModal'); var privacy=document.getElementById('privacyModal'); var analytics=document.getElementById('consentAnalytics');
+        var c=getConsent(); if(!c){ if(banner) banner.classList.remove('hidden'); } else { if(analytics) analytics.checked=!!c.analytics; }
+        function show(el,on){ if(!el) return; el.classList[on?'remove':'add']('hidden'); }
+        var accept=function(){ saveConsent({necessary:true, analytics:true, ts:Date.now()}); show(banner,false); show(modal,false); };
+        var reject=function(){ saveConsent({necessary:true, analytics:false, ts:Date.now()}); show(banner,false); show(modal,false); };
+        var save=function(){ var a=analytics?!!analytics.checked:false; saveConsent({necessary:true, analytics:a, ts:Date.now()}); show(banner,false); show(modal,false); };
+        var openSettings=function(){ if(analytics){ var cc=getConsent(); analytics.checked=!!(cc&&cc.analytics); } show(modal,true); };
+        var openPrivacy=function(){ show(privacy,true); };
+        var closeModal=function(){ show(modal,false); }; var closePrivacy=function(){ show(privacy,false); };
+        var b; if(b=document.getElementById('cookieAccept')) b.addEventListener('click', accept);
+        if(b=document.getElementById('cookieReject')) b.addEventListener('click', reject);
+        if(b=document.getElementById('cookieSave')) b.addEventListener('click', save);
+        if(b=document.getElementById('openCookieSettings')) b.addEventListener('click', openSettings);
+        if(b=document.getElementById('cookieSettings')) b.addEventListener('click', openSettings);
+        if(b=document.getElementById('openPrivacy')) b.addEventListener('click', openPrivacy);
+        if(b=document.getElementById('openPrivacyFromBanner')) b.addEventListener('click', openPrivacy);
+        modal && modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
+        privacy && privacy.addEventListener('click', function(e){ if(e.target===privacy) closePrivacy(); });
+      })();
+
+        // [data-close] działa dla obu modali
+        document.querySelectorAll('[data-close]').forEach(function(btn){
+          btn.addEventListener('click', function(){
+            var id = btn.getAttribute('data-close');
+            var el = document.getElementById(id);
+            if(el) el.classList.add('hidden');
+          });
+        });
+        // ESC zamyka modale
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ var cm=document.getElementById('cookieModal'); var pm=document.getElementById('privacyModal'); if(cm) cm.classList.add('hidden'); if(pm) pm.classList.add('hidden'); } });
+
+      // Wskaźnik SSL tylko gdy strona działa pod https
+      (function(){ var el=document.getElementById('sslInfo'); if(!el) return; if(location.protocol==='https:'){ el.classList.remove('hidden'); } })();
+      // Odśwież ikony po dynamicznych zmianach
+      lucide.createIcons();
+
+
+        (function(){
+          var d=document.getElementById('fDate'); if(!d) return;
+          try{ var min=new Date(); min.setHours(0,0,0,0); d.min=min.toISOString().slice(0,10);}catch(e){}
+          var btn=document.getElementById('datePickerBtn');
+          if(btn){ btn.addEventListener('click', function(){ try{ if(d.showPicker){ d.showPicker(); return; } }catch(e){} d.focus(); d.click(); }); }
+        })();
+
+</script>
+<script>
+      (function(){
+        // Ustaw MIN i domyślną wartość na *lokalną* dzisiejszą datę (bez UTC przesunięć)
+        function toLocalISODate(d){
+          try{
+            var tz = d.getTimezoneOffset() * 60000;
+            return new Date(d.getTime() - tz).toISOString().slice(0,10);
+          }catch(e){ return ''; }
+        }
+        var input = document.getElementById('fDate');
+        if(!input) return;
+        var today = new Date(); today.setHours(0,0,0,0);
+        var todayIso = toLocalISODate(today);
+        // Ustaw minimalną datę
+        input.min = todayIso;
+        // Jeśli puste lub wcześniejsze niż min -> ustaw dzisiaj
+        if(!input.value || input.value < todayIso){ input.value = todayIso; }
+        // Blokuj wybór dat z przeszłości
+        input.addEventListener('change', function(){
+          if (input.value && input.value < todayIso){ input.value = todayIso; }
+        });
+      })();
+    </script>
+<script>
+      (function(){
+        function ensureCalendarIcon(el){
+          if(!el) return;
+          // If lucide rendered SVG, it will no longer be an <i> element
+          if(el.tagName.toLowerCase() !== 'i') return;
+          // Inject a minimal inline SVG calendar (16x16) as fallback
+          el.outerHTML = '<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>';
+        }
+        // Run after load and shortly after to cover late script loads
+        function run(){
+          ensureCalendarIcon(document.querySelector('#datePickerBtn i[data-lucide="calendar"]'));
+          ensureCalendarIcon(document.querySelector('a[href="#kontakt"] i[data-lucide="calendar"]'));
+        }
+        if(document.readyState === 'complete'){ run(); } else { window.addEventListener('load', run); }
+        setTimeout(run, 1200);
+      })();
+    </script>
+<script>
+  (function(){
+    var navLinks = Array.prototype.slice.call(document.querySelectorAll('header nav a[href^="#"]'));
+    var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    if(!navLinks.length || !sections.length) return;
+
+    var currentId = 'home';
+    applyActive(currentId);
+
+    function band(){
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      return { top: vh * 0.30, bottom: vh * 0.70 }; // pasmo 30%–70%
+    }
+
+    function pickSection(){
+      var b = band();
+      var best = null, bestOverlap = 0;
+      for(var i=0;i<sections.length;i++){
+        var r = sections[i].getBoundingClientRect();
+        // Pomijamy sekcje praktycznie poza ekranem
+        if(r.bottom <= 0 || r.top >= window.innerHeight) continue;
+        var a = Math.max(r.top, b.top);
+        var c = Math.min(r.bottom, b.bottom);
+        var overlap = Math.max(0, c - a);
+        if(overlap > bestOverlap){
+          bestOverlap = overlap;
+          best = sections[i];
+        }
+      }
+      // wymagaj minimalnego pokrycia pasa (np. 24px), aby nie migało
+      if(best && bestOverlap >= 24) return best.id;
+      return null;
+    }
+
+    function applyActive(id){
+      navLinks.forEach(function(link){
+        link.classList.remove('nav-active');
+        if(id && link.getAttribute('href') === '#' + id){
+          link.classList.add('nav-active');
+        }
+      });
+    }
+
+    var ticking = false;
+    function onScroll(){
+      if(ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function(){
+        var id = pickSection() || currentId; // trzymaj poprzedni, jeśli nic nie spełnia warunku
+        if(id !== currentId){
+          currentId = id;
+          applyActive(currentId);
+        }
+        ticking = false;
+      });
+    }
+
+    // Reakcje
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    document.addEventListener('DOMContentLoaded', onScroll);
+    window.addEventListener('load', function(){ setTimeout(onScroll, 120); });
+  })();
+</script>
+
+<style>
+.messenger-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(90deg,var(--brand-500),var(--brand-600));
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 9999;
+    animation: pulse 1.5s infinite;
+}
+.messenger-button:hover {
+    transform: scale(1.1);
+}
+.messenger-button svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+}
+</style>
+
+<a href="https://m.me/184980644691595" target="_blank" rel="noopener" class="messenger-button" aria-label="Messenger Chat">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36">
+        <path d="M18 0C8.06 0 0 7.42 0 16.56c0 5.21 2.76 9.83 7.07 12.79v6.65l6.45-3.55c1.43.4 2.96.62 4.48.62 9.94 0 18-7.42 18-16.56S27.94 0 18 0zm1.79 22.51l-4.58-4.89-8.71 4.89 9.53-10.15 4.66 4.89 8.63-4.89-9.53 10.15z"/>
+    </svg>
+</a>
+
+
+<script>
+(function(){
+  var ids = ['home','uslugi','jak-to-dziala','kontakt'];
+  var links = ids.map(function(id){ return { id:id, el: document.querySelector('nav a[href="#'+id+'"]') }; });
+  var active = null;
+  function setActive(id){
+    if (active === id) return;
+    links.forEach(function(l){ if(l.el){ l.el.classList.toggle('nav-active', l.id===id); } });
+    active = id;
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0.01 });
+    ids.forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
