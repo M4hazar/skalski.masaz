@@ -143,15 +143,6 @@
     }
   }
 </style>
-
-    <style>
-      /* Linia osi kroków pseudo-elementem (semantycznie poprawnie dla <ol>) */
-      @media (min-width: 768px){
-        #timeline::before{content:'';position:absolute;left:0;right:0;top:1.25rem;height:2px;background-color:rgb(226 232 240);}
-        .dark #timeline::before{background-color:rgb(30 41 59);}
-      }
-    </style>
-
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 reveal-init">
 <!-- Loader -->
@@ -168,31 +159,10 @@
       (function(){ try{ var isDark=document.documentElement.classList.contains('dark'); var im=document.querySelector('#pageLoader img.logo-mark'); if(im){ im.src=isDark?'assets/sygnet-white.png':'assets/sygnet.png'; } }catch(e){} })();
     </script>
 <!-- Pasek mobilny (CTA) -->
-<div class="mobile-cta fixed inset-x-0 bottom-4 z-50 mx-auto w-[min(46rem,92%)] rounded-2xl border border-slate-200 bg-white/90 p-3 shadow-lg backdrop-blur dark:border-slate-800 dark:bg-slate-950/80 sm:hidden">
-<div class="flex items-center justify-between gap-3">
-<div class="flex items-center gap-3">
-<div class="h-12 w-12 rounded-2xl grid place-items-center bg-white border border-slate-200 shadow-md dark:bg-slate-900 dark:border-slate-800">
-<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-7 w-7 object-contain" src="assets/sygnet.png"/>
-</div>
-<div>
-<p class="text-sm font-semibold">Adam Skalski</p>
-<p class="text-xs text-slate-500 dark:text-slate-400">Mobilny masaż — Wrocław i okolice</p>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<button aria-label="Przełącz motyw" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" id="themeToggleMobile">
-<i class="h-4 w-4" data-lucide="moon"></i>
-<span class="toggle-text">Ciemny</span>
-</button>
-<a class="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-white brand-gradient" href="tel:+48886886028">
-<i class="h-4 w-4" data-lucide="phone"></i> Zadzwoń
-          </a>
-</div>
-</div>
-</div>
+
 <!-- Header -->
 <header class="sticky top-0 z-40 border-b border-slate-200 bg-white/70 backdrop-blur dark:border-slate-900 dark:bg-slate-950/60">
-<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
+<div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 py-4 flex items-center justify-between">
 <div class="flex items-center gap-3">
 <div class="h-12 w-12 rounded-2xl grid place-items-center bg-white border border-slate-200 shadow-md dark:bg-slate-900 dark:border-slate-800">
 <img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-7 w-7 object-contain" src="assets/sygnet.png"/>
@@ -211,14 +181,31 @@
 <a class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-white brand-gradient" href="tel:+48886886028">
 <i class="h-4 w-4" data-lucide="phone"></i> Zadzwoń
             </a>
-</nav>
-<button aria-label="Przełącz motyw" class="hidden md:inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" id="themeToggle">
-<i class="h-4 w-4" data-lucide="moon"></i>
-<span class="toggle-text">Ciemny</span>
-</button>
+
+    <button id="themeToggle" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label="Przełącz motyw">
+      <i data-lucide="moon" class="h-4 w-4"></i>
+      <span class="toggle-text">Ciemny</span>
+    </button></nav></div>
 </div>
-</div>
-</header>
+
+      <button id="mobileMenuToggle" class="md:hidden absolute right-4 top-4 md:hidden inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label="Otwórz menu">
+        <i data-lucide="menu" class="h-5 w-5"></i>
+        Menu
+      </button>
+    </header>
+    <!-- Mobile menu panel -->
+    <div id="mobileMenu" class="md:hidden fixed inset-x-0 top-16 z-40 hidden px-4">
+      <div class="rounded-2xl border border-slate-200 bg-white p-2 shadow-xl dark:border-slate-800 dark:bg-slate-950">
+        <a class="block rounded-lg px-3 py-2 nav-active" href="#home">Home</a>
+<a class="block rounded-lg px-3 py-2 hover:text-[color:var(--brand-600)]" href="#uslugi">Usługi i Cennik</a>
+<a class="block rounded-lg px-3 py-2 hover:text-[color:var(--brand-600)]" href="#jak-to-dziala">Jak to działa?</a>
+<a class="block rounded-lg px-3 py-2 hover:text-[color:var(--brand-600)]" href="#kontakt">Kontakt</a>
+<button id="themeToggleMobile" class="w-full mt-1 inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">
+          <i data-lucide="moon" class="h-4 w-4"></i><span class="toggle-text">Ciemny</span>
+        </button></div>
+      <button id="mobileMenuOverlay" class="fixed inset-0 top-16 -z-10"></button>
+    </div>
+
 <!-- Hero -->
 <section class="relative overflow-hidden pb-32 sm:pb-40" data-reveal="" id="home">
 <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -345,7 +332,8 @@
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
 <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Jak wygląda współpraca — krok po kroku</h2>
 <div class="mt-10">
-<ol id="timeline" class="relative md:grid md:grid-cols-4 md:gap-8">
+<ol class="relative md:grid md:grid-cols-4 md:gap-8">
+<div class="pointer-events-none absolute left-0 right-0 top-5 hidden h-0.5 bg-slate-200 dark:bg-slate-800 md:block"></div>
 <li class="relative flex items-start gap-4 md:block md:text-center">
 <div class="relative z-10 grid h-10 w-10 place-items-center rounded-full text-white ring-2 ring-white dark:ring-slate-950 brand-gradient">1</div>
 <div class="mt-0.5 md:mt-4">
@@ -383,7 +371,7 @@
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 flex flex-col md:flex-row items-start md:items-center gap-8 mt-20 sm:mt-28">
 <div class="max-w-xl">
 <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Obszar działania</h2>
-<p class="mt-3 text-slate-600 dark:text-slate-300">Świadczę usługi na terenie Wrocławia i okolic. Dojazd ustalam indywidualnie podczas wywiadu wstępnego.</p>
+<p class="mt-3 text-slate-600 dark:text-slate-300">Wrocław i okolice. Dojazd ustalany indywidualnie podczas rezerwacji.</p>
 <a class="mt-4 inline-flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-slate-700 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" href="https://maps.app.goo.gl/zEY8jzWXrHCPmW1w5" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="map-pin"></i> Otwórz w Mapach Google</a>
 </div>
 <div class="relative h-72 w-full max-w-xl overflow-hidden rounded-3xl bg-white p-4 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
@@ -406,17 +394,17 @@
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 grid gap-10 md:grid-cols-2">
 <div>
 <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Kontakt</h2>
-<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej przeprowadzić wywiad telefonicznie lub za pośrednictwem SMS. W wiadomości proszę podać adres oraz preferowane terminy.</p>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej telefonicznie lub przez Facebook. W wiadomości podaj adres i preferowane terminy.</p>
 <div class="mt-6 space-y-3">
 <a class="flex w-max items-center gap-3 rounded-xl px-4 py-3" href="tel:+48886886028" style="background-color:var(--brand-50);color:var(--brand-800);border:1px solid var(--brand-300)"><i class="h-5 w-5" data-lucide="phone"></i> +48 886 886 028</a>
 <a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="mailto:skalski.masaz@gmail.com"><i class="h-5 w-5" data-lucide="mail"></i> skalski.masaz@gmail.com</a>
-<a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="https://www.facebook.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="facebook"></i> Masaż Medyczny - Adam Skalski</a>
+<a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="https://www.facebook.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="facebook"></i> Masaż Medyczny — Adam Skalski</a>
 <a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="https://maps.app.goo.gl/zEY8jzWXrHCPmW1w5" rel="noreferrer" target="_blank"><i class="h-5 w-5" data-lucide="map-pin"></i> Wrocław i okolice</a>
 </div>
 </div>
 <div class="rounded-3xl bg-white p-6 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
 <h3 class="text-lg font-semibold">Szybkie zgłoszenie online</h3>
-<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane, a formularz przygotuję SMS. Wybierz <strong>datę</strong> oraz <strong>porę dnia</strong>.</p>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane — przygotuję szkic SMS. Wybierz <strong>datę</strong> (tylko przyszłą) oraz <strong>porę dnia</strong>.</p>
 <form class="mt-5 space-y-4" id="smsForm" onsubmit="return false;">
 <div class="grid gap-4 sm:grid-cols-2">
 <div>
@@ -471,15 +459,15 @@
 <img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-9 w-9 object-contain" src="assets/sygnet.png"/>
 </div>
 <div>
-<p class="text-sm font-semibold">Masaż Medyczny - Adam Skalski</p>
-<p class="text-xs text-slate-500 dark:text-slate-400">Dyplomowany masażysta, Wrocław i okolice</p>
+<p class="text-sm font-semibold">Masaż Medyczny — Adam Skalski</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Mobilny masażysta, Wrocław i okolice</p>
 </div>
 </div>
 <!-- Right: © + socials in one row, then links, then SSL -->
 <div class="flex flex-col items-center sm:items-end gap-2 text-xs text-slate-500 dark:text-slate-400 w-full sm:w-auto">
 <!-- Row: © + Socials -->
 <div class="w-full flex flex-wrap items-center justify-center sm:justify-end gap-3">
-<div>© <span id="year"></span> By Paweł Hejna | Wszelkie prawa zastrzeżone.</div>
+<div>© <span id="year"></span> By Paweł Hejna | Wszelkie prawa zastrzeżone</div>
 <div class="flex items-center gap-2">
 <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.facebook.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="facebook"></i><span class="sr-only">Facebook</span></a>
 <a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.instagram.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="instagram"></i><span class="sr-only">Instagram</span></a>
@@ -637,19 +625,6 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
       var smsBtn=document.getElementById('smsBtn');
       var dateInput=document.getElementById('fDate');
       var periodSelect=document.getElementById('fPeriod');
-      // Ikonka kalendarza otwiera natywny wybór daty (fallback: focus)
-      try{
-        var dateBtn = document.getElementById('datePickerBtn');
-        if (dateBtn) {
-          dateBtn.addEventListener('click', function(){
-            try {
-              if (dateInput && typeof dateInput.showPicker === 'function') { dateInput.showPicker(); }
-              else if (dateInput) { dateInput.focus(); }
-            } catch(e){ if (dateInput) dateInput.focus(); }
-          });
-        }
-      }catch(e){}
-
       var PERIODS={ morning:{label:'rano (08:00–12:00)'}, afternoon:{label:'po południu (12:00–16:00)'}, evening:{label:'wieczorem (16:00–20:00)'} };
       function pad2(n){return String(n).padStart(2,'0');}
       function todayStr(){ var d=new Date(); return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
@@ -723,7 +698,6 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
       (function(){ var el=document.getElementById('sslInfo'); if(!el) return; if(location.protocol==='https:'){ el.classList.remove('hidden'); } })();
       // Odśwież ikony po dynamicznych zmianach
       lucide.createIcons();
-
 
         (function(){
           var d=document.getElementById('fDate'); if(!d) return;
@@ -886,24 +860,45 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
     </svg>
 </a>
 
-
 <script>
 (function(){
-  var ids = ['home','uslugi','jak-to-dziala','kontakt'];
-  var links = ids.map(function(id){ return { id:id, el: document.querySelector('nav a[href="#'+id+'"]') }; });
-  var active = null;
-  function setActive(id){
-    if (active === id) return;
-    links.forEach(function(l){ if(l.el){ l.el.classList.toggle('nav-active', l.id===id); } });
-    active = id;
-  }
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting) setActive(e.target.id); });
-    }, { rootMargin: '-45% 0px -45% 0px', threshold: 0.01 });
-    ids.forEach(function(id){ var s=document.getElementById(id); if(s) io.observe(s); });
-  }
+  try{
+    var btn = document.getElementById('mobileMenuToggle');
+    var panel = document.getElementById('mobileMenu');
+    var overlay = document.getElementById('mobileMenuOverlay');
+    if(!btn || !panel) return;
+    function closeMenu(){ panel.classList.add('hidden'); document.documentElement.style.overflow = ''; }
+    function openMenu(){ panel.classList.remove('hidden'); document.documentElement.style.overflow = 'hidden'; }
+    btn.addEventListener('click', function(){
+      if(panel.classList.contains('hidden')) openMenu(); else closeMenu();
+    });
+    if(overlay){ overlay.addEventListener('click', closeMenu); }
+    panel.addEventListener('click', function(e){
+      var a = e.target.closest('a'); if(a) closeMenu();
+    });
+    // Close on ESC
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMenu(); });
+  }catch(e){}
 })();
+</script>
+
+<!-- Messenger Chat Plugin -->
+<div id="fb-root"></div>
+<div id="fb-customer-chat" class="fb-customerchat"></div>
+<script>
+  var chatbox = document.getElementById('fb-customer-chat');
+  chatbox.setAttribute("page_id", "YOUR_PAGE_ID_HERE");
+  chatbox.setAttribute("attribution", "biz_inbox");
+  window.fbAsyncInit = function() {
+    FB.init({xfbml: true, version: 'v17.0'});
+  };
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/pl_PL/sdk/xfbml.customerchat.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
 </script>
 
 </body>
