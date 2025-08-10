@@ -638,10 +638,21 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
       })();
 
       // Builder SMS (data + pora dnia)
-      function buildSmsBody(name, service, where, when){
-        var parts=['Dzień dobry, tutaj '+(name||''),'chciałbym umówić: '+(service||'masaż'), where?'miejsce: '+where:'', when?'termin: '+when:''].filter(Boolean);
-        return encodeURIComponent(parts.join('; '));
-      }
+      function buildSmsBody(name, service, where, dateStr, periodLabel){
+  var lines = [
+    'Dzień dobry,',
+    'Przesyłam informacje potrzebne do umówienia wizyty.',
+    '',
+    'Usługa: ' + (service || '—'),
+    'Adres: ' + (where || '—'),
+    'Termin: ' + (dateStr || '—'),
+    'Godzina: ' + (periodLabel || '—'),
+    '',
+    'Pozdrawiam,',
+    (name || 'Klient')
+  ];
+  return encodeURIComponent(lines.join('\n'));
+}
       var smsBtn=document.getElementById('smsBtn');
       var dateInput=document.getElementById('fDate');
       var periodSelect=document.getElementById('fPeriod');
