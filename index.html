@@ -150,6 +150,10 @@
 #serviceModal > div[class*="left-1/2"]{ max-height:90vh; overflow-y:auto; }
 </style>
 
+<!-- Favicon / Tab icon -->
+    <link rel="icon" href="assets/sygnet.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="assets/sygnet.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="assets/sygnet.png">
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 reveal-init">
 <!-- Loader -->
@@ -436,14 +440,16 @@
 <label class="mb-1 block text-sm text-slate-600 dark:text-slate-300" for="fWhere">Adres wizyty</label>
 <input autocomplete="street-address" class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fWhere" name="where" placeholder="np. Wrocław, Krzyki, ul. ..."/>
 </div>
-<div class="relative">
+<div class="w-full">
 <label for="fDate">Data wizyty</label>
-<button aria-label="Otwórz kalendarz" class="absolute inset-y-0 right-2 my-auto top-[34px] grid h-7 w-7 place-items-center rounded-md text-slate-700 hover:text-slate-700 dark:hover:text-slate-200 dark:text-slate-200" id="datePickerBtn" type="button"><i class="h-4 w-4" data-lucide="calendar"></i></button>
-<input class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 pr-10 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fDate" name="date" type="date"/>
+  <div class="relative w-full overflow-hidden">
+    <input class="bg-white border border-slate-300 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100 focus:ring-2 min-h-[44px] outline-none pr-12 px-3 py-3 rounded-xl shadow-inner text-slate-800 w-full" id="fDate" name="date" type="date"/>
+    <button aria-label="Otwórz kalendarz" class="absolute right-2 my-auto ] grid h-7 w-7 place-items-center rounded-md text-slate-700 hover:text-slate-700 dark:hover:text-slate-200 dark:text-slate-200 inset-y-0" id="datePickerBtn" type="button"><i class="h-4 w-4" data-lucide="calendar"></i></button>
+  </div>
 </div>
 <div>
 <label class="mb-1 block text-sm text-slate-600 dark:text-slate-300" for="fPeriod">Preferowana pora dnia</label>
-<select class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100" id="fPeriod" name="period">
+<select class="w-full rounded-xl border border-slate-300 bg-white px-3 text-slate-800 shadow-inner outline-none focus:ring-2 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 py-3 min-h-[44px]" id="fPeriod" name="period">
 <option value="morning">Rano (08:00–12:00)</option>
 <option value="afternoon">Po południu (12:00–16:00)</option>
 <option value="evening">Wieczorem (16:00–20:00)</option>
