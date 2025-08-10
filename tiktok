@@ -282,7 +282,6 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 </a>
 </div>
 </section><div class="h-px bg-slate-200 dark:bg-slate-700 opacity-50"></div>
-<!-- O MNIE (auto-dodane w v9) -->
 <!-- Usługi (kafelki + modal) -->
 <section class="py-28 sm:py-24 min-h-[80vh]" data-reveal="" id="uslugi">
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
