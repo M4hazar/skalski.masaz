@@ -638,10 +638,27 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
       })();
 
       // Builder SMS (data + pora dnia)
-      function buildSmsBody(name, service, where, when){
-        var parts=['Dzień dobry, tutaj '+(name||''),'chciałbym umówić: '+(service||'masaż'), where?'miejsce: '+where:'', when?'termin: '+when:''].filter(Boolean);
-        return encodeURIComponent(parts.join('; '));
-      }
+      function buildSmsBody(name, service, where, when){  // Zwraca treść SMS w estetycznym, wielolinijkowym formacie.
+  // Parametr "when" może wyglądać np.: "10.08.2025, Rano (08:00–12:00)"
+  var dateStr = '', periodLabel = '';
+  if (when) {
+    var parts = String(when).split(',').map(function(s){ return s.trim(); });
+    dateStr = parts[0] || '';
+    if (parts.length > 1) periodLabel = parts.slice(1).join(', ');
+  }
+  var lines = [
+    'Dzień dobry,',
+    'Przesyłam informacje potrzebne do umówienia wizyty.',
+    '',
+    'Usługa: ' + (service || '—'),
+    'Adres: ' + (where || '—'),
+    'Termin: ' + (dateStr || '—'),
+    'Godzina: ' + (periodLabel || '—'),
+    '',
+    'Pozdrawiam,',
+    (name || 'Klient')
+  ];
+  return encodeURIComponent(lines.join('\n'));}
       var smsBtn=document.getElementById('smsBtn');
       var dateInput=document.getElementById('fDate');
       var periodSelect=document.getElementById('fPeriod');
@@ -961,6 +978,26 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
     });
   }
 })();
+</script>
+
+
+<script>
+// validate-smsBtn (minimal; nie zmienia wyglądu)
+document.addEventListener('DOMContentLoaded', function(){
+  var btn = document.getElementById('smsBtn');
+  var nameEl = document.getElementById('fName');
+  var addrEl = document.getElementById('fWhere');
+  if(!btn || !nameEl || !addrEl) return;
+  btn.addEventListener('click', function(e){
+    var name = (nameEl.value || '').trim();
+    var where = (addrEl.value || '').trim();
+    if (!name || !where) {
+      e.preventDefault();
+      if (!name) { try { nameEl.focus(); } catch(_){} }
+      else { try { addrEl.focus(); } catch(_){} }
+    }
+  }, true); // capture: zadziała zanim przeglądarka wejdzie w href
+});
 </script>
 
 </body>
