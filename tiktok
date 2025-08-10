@@ -264,7 +264,7 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 </div>
 </div>
 
-<div class="mt-12 flex justify-center space-x-6">
+<div class="mt-0 flex justify-center space-x-6">
 <a aria-label="Facebook" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transform hover:scale-110 transition" href="https://www.facebook.com/skalski.masaz/" rel="noopener" target="_blank">
 <svg class="h-8 w-8" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 <path d="M22 12a10 10 0 1 0-11.5 9.87v-6.99h-2.3V12h2.3V9.8c0-2.28 1.36-3.54 3.45-3.54.99 0 2.03.18 2.03.18v2.24h-1.14c-1.13 0-1.48.7-1.48 1.42V12h2.52l-.4 2.88h-2.12v6.99A10 10 0 0 0 22 12"></path>
