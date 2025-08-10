@@ -154,6 +154,13 @@
     <link rel="icon" href="assets/sygnet.png" type="image/png" sizes="32x32">
     <link rel="icon" href="assets/sygnet.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="assets/sygnet.png">
+
+<style>
+/* hide-native-date-icon */
+input[type="date"]::-webkit-calendar-picker-indicator{ opacity:0; display:none; }
+input[type="date"]{ -webkit-appearance:none; appearance:none; }
+</style>
+
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 reveal-init">
 <!-- Loader -->
@@ -405,7 +412,7 @@
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 grid gap-10 md:grid-cols-2">
 <div>
 <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Kontakt</h2>
-<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej telefonicznie lub przez Facebook. W wiadomości podaj adres i preferowane terminy.</p>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej skontaktować się telefonicznie lub przez SMS, aby przeprowadzić wstępny wywiad.</p>
 <div class="mt-6 space-y-3">
 <a class="flex w-max items-center gap-3 rounded-xl px-4 py-3" href="tel:+48886886028" style="background-color:var(--brand-50);color:var(--brand-800);border:1px solid var(--brand-300)"><i class="h-5 w-5" data-lucide="phone"></i> +48 886 886 028</a>
 <a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="mailto:skalski.masaz@gmail.com"><i class="h-5 w-5" data-lucide="mail"></i> skalski.masaz@gmail.com</a>
@@ -415,7 +422,7 @@
 </div>
 <div class="rounded-3xl bg-white p-6 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
 <h3 class="text-lg font-semibold">Szybkie zgłoszenie online</h3>
-<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane — przygotuję szkic SMS. Wybierz <strong>datę</strong> (tylko przyszłą) oraz <strong>porę dnia</strong>.</p>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane w formularzu, a strona przygotuje wzór SMS. Wybierz <strong>datę</strong> oraz <strong>porę dnia</strong>.</p>
 <form class="mt-5 space-y-4" id="smsForm" onsubmit="return false;">
 <div class="grid gap-4 sm:grid-cols-2">
 <div>
@@ -442,7 +449,7 @@
 </div>
 <div class="w-full">
 <label for="fDate">Data wizyty</label>
-  <div class="relative w-full overflow-hidden rounded-xl">
+  <div class="relative w-full overflow-hidden rounded-xl dark: dark:">
     <input class="bg-white border border-slate-300 dark:bg-slate-950 dark:border-slate-700 dark:text-slate-100 focus:ring-2 min-h-[44px] outline-none pr-12 px-3 py-3 rounded-xl shadow-inner text-slate-800 w-full" id="fDate" name="date" type="date"/>
     <button aria-label="Otwórz kalendarz" class="absolute right-2 my-auto ] grid h-7 w-7 place-items-center rounded-md text-slate-700 hover:text-slate-700 dark:hover:text-slate-200 dark:text-slate-200 inset-y-0 md:inset-y-auto md:my-0 md:top-1/2 md:-translate-y-1/2 md:-mt-px" id="datePickerBtn" type="button"><i class="h-4 w-4" data-lucide="calendar"></i></button>
   </div>
