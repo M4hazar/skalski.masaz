@@ -638,27 +638,10 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
       })();
 
       // Builder SMS (data + pora dnia)
-      function buildSmsBody(name, service, where, when){  // Zwraca treść SMS w estetycznym, wielolinijkowym formacie.
-  // Parametr "when" może wyglądać np.: "10.08.2025, Rano (08:00–12:00)"
-  var dateStr = '', periodLabel = '';
-  if (when) {
-    var parts = String(when).split(',').map(function(s){ return s.trim(); });
-    dateStr = parts[0] || '';
-    if (parts.length > 1) periodLabel = parts.slice(1).join(', ');
-  }
-  var lines = [
-    'Dzień dobry,',
-    'Przesyłam informacje potrzebne do umówienia wizyty.',
-    '',
-    'Usługa: ' + (service || '—'),
-    'Adres: ' + (where || '—'),
-    'Termin: ' + (dateStr || '—'),
-    'Godzina: ' + (periodLabel || '—'),
-    '',
-    'Pozdrawiam,',
-    (name || 'Klient')
-  ];
-  return encodeURIComponent(lines.join('\n'));}
+      function buildSmsBody(name, service, where, when){
+        var parts=['Dzień dobry, tutaj '+(name||''),'chciałbym umówić: '+(service||'masaż'), where?'miejsce: '+where:'', when?'termin: '+when:''].filter(Boolean);
+        return encodeURIComponent(parts.join('; '));
+      }
       var smsBtn=document.getElementById('smsBtn');
       var dateInput=document.getElementById('fDate');
       var periodSelect=document.getElementById('fPeriod');
