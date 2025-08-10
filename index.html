@@ -473,38 +473,30 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 </div>
 </div>
 </section>
-<footer class="mt-20 border-t border-slate-200 bg-white/70 backdrop-blur dark:border-slate-800 dark:bg-slate-950/60">
-<div class="mx-auto w-full max-w-6xl px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-<!-- Left: brand -->
-<div class="flex items-center gap-3">
-<div class="h-14 w-14 rounded-2xl grid place-items-center bg-white border border-slate-200 shadow-md dark:bg-slate-900 dark:border-slate-800">
-<img alt="Sygnet — Masaż Medyczny — Adam Skalski" class="logo-mark h-9 w-9 object-contain" src="assets/sygnet.png"/>
-</div>
-<div>
-<p class="text-sm font-semibold">Masaż Medyczny — Adam Skalski</p>
-<p class="text-xs text-slate-500 dark:text-slate-400">Mobilny masażysta, Wrocław i okolice</p>
-</div>
-</div>
-<!-- Right: © + socials in one row, then links, then SSL -->
-<div class="flex flex-col items-center sm:items-end gap-2 text-xs text-slate-500 dark:text-slate-400 w-full sm:w-auto">
-<!-- Row: © + Socials -->
-<div class="w-full flex flex-wrap items-center justify-center sm:justify-end gap-3">
-<a href="https://github.com/m4hazar" target="_blank" rel="noreferrer" class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700"><div>© <span id="year"></span> By Paweł Hejna | Wszelkie prawa zastrzeżone</a></div>
-<div class="flex items-center gap-2">
-<a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.facebook.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="facebook"></i><span class="sr-only">Facebook</span></a>
-<a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.instagram.com/skalski.masaz/" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="instagram"></i><span class="sr-only">Instagram</span></a>
-<a class="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 dark:border-slate-800 dark:bg-slate-900" href="https://www.tiktok.com/@skalski.masaz" rel="noreferrer" target="_blank"><i class="h-4 w-4" data-lucide="music-2"></i><span class="sr-only">TikTok</span></a>
-</div>
-</div>
-<!-- Row: privacy & cookies -->
-<div class="flex items-center gap-4">
-<button class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700" id="openPrivacy">Polityka prywatności</button>
-<button class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700" id="openCookieSettings">Ustawienia cookies</button>
-</div>
-<!-- SSL -->
-<div class="hidden items-center gap-1 opacity-80" id="sslInfo"><i class="h-3.5 w-3.5" data-lucide="lock"></i><span class="ssl-text">Połączenie szyfrowane SSL</span></div>
-</div>
-</div>
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 text-xs text-slate-500 dark:text-slate-400">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex flex-col items-center gap-2">
+    
+    <!-- Copyright -->
+    <div class="text-center">
+      © <span id="year">2025</span> By Paweł Hejna | Wszelkie prawa zastrzeżone
+    </div>
+
+    <!-- Links -->
+    <div class="flex items-center gap-4">
+      <button class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700" id="openPrivacy">Polityka prywatności</button>
+      <button class="underline decoration-slate-300 underline-offset-4 hover:no-underline dark:decoration-slate-700" id="openCookieSettings">Ustawienia cookies</button>
+    </div>
+
+    <!-- SSL -->
+    <div class="flex items-center gap-1 opacity-80">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      <span class="ssl-text">Połączenie szyfrowane SSL</span>
+    </div>
+
+  </div>
 </footer>
 <!-- Cookies banner & privacy modal -->
 <div class="fixed inset-x-0 bottom-4 z-[60] mx-auto hidden w-[min(56rem,94%)] rounded-2xl border border-slate-200 bg-white/95 p-3 shadow-2xl backdrop-blur dark:border-slate-800 dark:bg-slate-900/95" id="cookieBanner">
