@@ -143,6 +143,13 @@
     }
   }
 </style>
+
+<style>
+/* modal-contained-fix */
+#serviceModal [style*="height:85%"]{ height:auto !important; }
+#serviceModal > div[class*="left-1/2"]{ max-height:90vh; overflow-y:auto; }
+</style>
+
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 reveal-init">
 <!-- Loader -->
@@ -267,29 +274,29 @@
 <section class="py-28 sm:py-24 min-h-[80vh]" data-reveal="" id="uslugi">
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6">
 <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Usługi i cennik</h2>
-<p class="mt-2 text-slate-600 dark:text-slate-300">Kliknij kafelek, aby zobaczyć opis oraz szybki przycisk „Zadzwoń”.</p>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Kliknij, aby wyświetlić szczegółowy opis wybranej usługi wraz z dodatkowymi informacjami.</p>
 <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
-<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Uniwersalny masaż na napięte plecy i kark. Poprawia krążenie, rozluźnia mięśnie i przywraca lekkość w ciele." data-name="Masaż klasyczny" data-price="90 zł" data-time="50 min">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Uniwersalny masaż całego ciała lub wybranych partii. Łączy techniki głaskania, rozcierania i ugniatania, poprawiając krążenie i zmniejszając napięcia. Idealny dla osób pracujących siedząco i w profilaktyce przeciążeń." data-name="Masaż klasyczny" data-price="90 zł" data-time="50 min">
 <div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż klasyczny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">90 zł</span></div>
 <p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 50 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Relaks i poprawa krążenia dla całego ciała.</p>
 </article>
-<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Terapia ukierunkowana na ból i ograniczenia ruchu. Precyzyjna praca wzdłuż tkanek, aby uwolnić przeciążenia." data-name="Masaż leczniczy" data-price="100 zł" data-time="55 min">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Terapia ukierunkowana na ból i ograniczenia ruchomości. Precyzyjna praca wzdłuż tkanek, z elementami technik głębokich. Pomocna przy bólach kręgosłupa, karku, zespołach przeciążeniowych oraz po urazach (po konsultacji)." data-name="Masaż leczniczy" data-price="100 zł" data-time="55 min">
 <div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż leczniczy</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">100 zł</span></div>
 <p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 55 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Skuteczna pomoc w dolegliwościach bólowych.</p>
 </article>
-<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Wolniejszy rytm, spokojne techniki i wyciszenie. Dla redukcji stresu i odpoczynku całego ciała." data-name="Masaż relaksacyjny" data-price="120 zł" data-time="65 min">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Spokojny, rytmiczny zabieg nastawiony na wyciszenie układu nerwowego. Redukuje stres, ułatwia sen i przywraca poczucie lekkości bez bolesnych bodźców." data-name="Masaż relaksacyjny" data-price="120 zł" data-time="65 min">
 <div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż relaksacyjny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">120 zł</span></div>
 <p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 65 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Głębokie odprężenie i redukcja stresu.</p>
 </article>
-<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Delikatne, rytmiczne techniki wspierające odpływ limfy. Zmniejsza obrzęki i uczucie ciężkości." data-name="Masaż limfatyczny" data-price="100 zł" data-time="60 min">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Delikatne ruchy wspomagające odpływ limfy. Zmniejsza obrzęki i uczucie ciężkości, wspiera rekonwalescencję oraz opiekę po zabiegach (zgodnie z zaleceniami lekarza)." data-name="Masaż limfatyczny" data-price="100 zł" data-time="60 min">
 <div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż limfatyczny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">100 zł</span></div>
 <p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 60 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Wsparcie drenażu i redukcja obrzęków.</p>
 </article>
-<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Specjalistyczna praca na mięśniach żwaczowych od wewnątrz policzka. Pomocna przy bruksizmie i napięciach stawu skroniowo‑żuchwowego — w pełnym reżimie higienicznym." data-name="Masaż transbukalny" data-price="130 zł" data-time="30 min">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Specjalistyczna praca na mięśniach żwaczowych i strukturach okolicy stawu skroniowo‑żuchwowego, wykonywana częściowo od wewnątrz policzka w reżimie higienicznym. Pomocna przy bruksizmie, napięciowych bólach głowy i trzaskach w stawie." data-name="Masaż transbukalny" data-price="130 zł" data-time="30 min">
 <div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż transbukalny</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">130 zł</span></div>
 <p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 30 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Terapia mięśni twarzy od wewnątrz policzków.</p>
 </article>
-<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Kompleksowa sesja od stóp do karku. Połączenie technik klasycznych i powięziowych dla pełnego rozluźnienia." data-name="Masaż całego ciała" data-price="220 zł" data-time="120 min">
+<article class="service-card group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 shadow-md transition hover:-translate-y-0.5 hover:shadow-card dark:border-slate-800 dark:bg-slate-900 cursor-pointer min-h-[155px]" data-desc="Rozszerzona sesja łącząca elementy klasycznego, powięziowego i relaksacyjnego. Kompleksowo rozluźnia od stóp do karku, poprawia mobilność i wspiera regenerację." data-name="Masaż całego ciała" data-price="220 zł" data-time="120 min">
 <div class="flex items-start justify-between gap-3"><h3 class="text-lg font-semibold">Masaż całego ciała</h3><span class="rounded-full px-3 py-1 font-medium brand-gradient text-lg">220 zł</span></div>
 <p class="mt-auto pt-2 dark:text-slate-300 text-base">Czas: 120 min</p><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Kompleksowa regeneracja od stóp do głów.</p>
 </article>
@@ -394,7 +401,7 @@
 <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 grid gap-10 md:grid-cols-2">
 <div>
 <h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Kontakt</h2>
-<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej skontaktować się telefonicznie lub przez SMS, podając w wiadomości adres oraz preferowane terminy.</p>
+<p class="mt-2 text-slate-600 dark:text-slate-300">Najwygodniej telefonicznie lub przez Facebook. W wiadomości podaj adres i preferowane terminy.</p>
 <div class="mt-6 space-y-3">
 <a class="flex w-max items-center gap-3 rounded-xl px-4 py-3" href="tel:+48886886028" style="background-color:var(--brand-50);color:var(--brand-800);border:1px solid var(--brand-300)"><i class="h-5 w-5" data-lucide="phone"></i> +48 886 886 028</a>
 <a class="flex w-max items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200" href="mailto:skalski.masaz@gmail.com"><i class="h-5 w-5" data-lucide="mail"></i> skalski.masaz@gmail.com</a>
@@ -404,7 +411,7 @@
 </div>
 <div class="rounded-3xl bg-white p-6 shadow-sm border border-slate-200 dark:bg-slate-900 dark:border-slate-800">
 <h3 class="text-lg font-semibold">Szybkie zgłoszenie online</h3>
-<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane, a formularz przygotuje SMS. Wybierz <strong>datę</strong> oraz <strong>porę dnia</strong>.</p>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-300">Wpisz dane — przygotuję szkic SMS. Wybierz <strong>datę</strong> (tylko przyszłą) oraz <strong>porę dnia</strong>.</p>
 <form class="mt-5 space-y-4" id="smsForm" onsubmit="return false;">
 <div class="grid gap-4 sm:grid-cols-2">
 <div>
@@ -899,6 +906,48 @@ function applyTheme(isDark){ document.documentElement.classList.toggle('dark', !
     js.src = "https://connect.facebook.net/pl_PL/sdk/xfbml.customerchat.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script>
+/* date-icon-handler */
+(function(){
+  try{
+    var dateBtn = document.getElementById('datePickerBtn');
+    var dateInput = document.getElementById('fDate');
+    if(dateBtn && dateInput){
+      dateBtn.addEventListener('click', function(){
+        try{ if(typeof dateInput.showPicker==='function') dateInput.showPicker(); else dateInput.focus(); }
+        catch(e){ dateInput.focus(); }
+      });
+    }
+  }catch(e){}
+})();
+</script>
+
+<script>
+/* scrollspy-observer */
+(function(){
+  var ids = ['home', 'uslugi', 'jak-to-dziala', 'kontakt'];
+  function $$(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
+  function targets(id){ return $$('a[href="#'+id+'"]'); }
+  function setActive(id){
+    var all = $$('nav a, #mobileMenu a');
+    all.forEach(function(a){ a.classList.remove('nav-active'); });
+    targets(id).forEach(function(a){ a.classList.add('nav-active'); });
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin:'-45% 0px -45% 0px', threshold:0.01 });
+    ids.forEach(function(id){ var el=document.getElementById(id); if(el) io.observe(el); });
+  } else {
+    window.addEventListener('scroll', function(){
+      var pos = window.scrollY + window.innerHeight * 0.5, best=null, dmin=1e9;
+      ids.forEach(function(id){ var el=document.getElementById(id); if(!el) return; var r=el.getBoundingClientRect(); var mid=r.top+window.scrollY+r.height/2; var d=Math.abs(mid-pos); if(d<dmin){dmin=d;best=id;} });
+      if(best) setActive(best);
+    });
+  }
+})();
 </script>
 
 </body>
