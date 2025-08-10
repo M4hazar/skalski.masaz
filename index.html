@@ -512,12 +512,13 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 <div class="grid h-9 w-9 place-items-center rounded-lg text-white brand-gradient shrink-0"><i class="h-4 w-4" data-lucide="cookie"></i></div>
 <div class="text-sm text-slate-700 dark:text-slate-200">
 <p class="font-medium">Pliki cookies</p>
-<p class="mt-1 text-slate-600 dark:text-slate-300 text-xs">Używamy niezbędnych cookies (np. motyw, zgoda). Opcjonalne analityczne możesz włączyć w ustawieniach. Szczegóły w <button class="underline hover:no-underline" id="openPrivacyFromBanner">polityce prywatności</button>.</p>
+<p class="mt-1 text-slate-600 dark:text-slate-300 text-xs">
+  Używamy niezbędnych cookies (np. zapamiętywanie motywu strony i samej zgody na cookies). Opcjonalne analityczne możesz włączyć w ustawieniach. Szczegóły w <span role="button" tabindex="0" class="underline hover:no-underline cursor-pointer" id="openPrivacyFromBanner">polityce prywatności</span>.
+</p>
 </div>
 <div class="ml-auto flex flex-wrap gap-1">
-<button class="rounded-xl border border-slate-200 px-2 py-1 text-xs dark:border-slate-700" id="cookieReject">Odrzuć</button>
-<button class="rounded-xl border border-slate-200 px-2 py-1 text-xs dark:border-slate-700" id="cookieSettings">Ustawienia</button>
 <button class="rounded-xl px-2 py-1 text-xs text-white brand-gradient" id="cookieAccept">Akceptuj</button>
+<button class="rounded-xl border border-slate-200 px-2 py-1 text-xs dark:border-slate-700" id="cookieSettings">Ustawienia</button>
 </div>
 </div>
 </div>
@@ -531,7 +532,7 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 <div class="mt-4 space-y-4 text-sm">
 <label class="flex items-start gap-3">
 <input checked="" class="mt-1" disabled="" type="checkbox"/>
-<div><p class="font-medium">Niezbędne</p><p class="text-slate-600 dark:text-slate-300">Zapamiętywanie motywu (jasny/ciemny) i samej zgody na cookies.</p></div>
+<div><p class="font-medium">Niezbędne</p><p class="text-slate-600 dark:text-slate-300">Zapamiętywanie motywu strony i samej zgody na cookies.</p></div>
 </label>
 <label class="flex items-start gap-3">
 <input class="mt-1" id="consentAnalytics" type="checkbox"/>
@@ -552,18 +553,75 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 <button class="rounded-lg p-1 hover:bg-slate-100 dark:hover:bg-slate-800" data-close="privacyModal"><i data-lucide="x"></i></button>
 </div>
 <div class="h-[calc(80vh-64px)] overflow-y-auto p-6 text-sm text-slate-700 dark:text-slate-300">
-<p class="mb-3"><strong>Administrator danych:</strong> Adam Skalski (działalność mobilna, Wrocław i okolice), kontakt: <a class="underline" href="mailto:skalski.masaz@gmail.com">skalski.masaz@gmail.com</a>, tel. +48 886 886 028.</p>
-<p class="mb-3">Przetwarzam dane wyłącznie w celu obsługi zapytań i rezerwacji wizyt — imię, wybrana usługa, adres wizyty, preferowana data i pora dnia, treść wiadomości. Podanie danych jest dobrowolne, lecz niezbędne do realizacji zapytania.</p>
-<p class="mb-3">Podstawą prawną jest art. 6 ust. 1 lit. b i f RODO (konieczność podjęcia działań przed zawarciem umowy; prawnie uzasadniony interes). Odbiorcami mogą być dostawcy hostingu/poczty na podstawie umów powierzenia. Dane nie są przekazywane do państw trzecich.</p>
-<p class="mb-3">Okres przechowywania: przez czas niezbędny do obsługi zapytania/realizacji wizyty oraz przez okres wymagany przepisami (np. rozliczenia).</p>
-<p class="mb-4">Twoje prawa: dostępu do danych, sprostowania, usunięcia, ograniczenia, przenoszenia, sprzeciwu. Skarga do PUODO.</p>
-<h4 class="mt-4 mb-2 font-semibold">Cookies</h4>
-<p class="mb-2">Wykorzystuję cookies <em>niezbędne</em> do działania strony (motyw, zgoda) oraz opcjonalne cookies <em>analityczne</em> (statystyki). Domyślnie analityczne są wyłączone.</p>
-<ul class="list-disc pl-5">
-<li>localStorage: <code>theme</code> — motyw strony</li>
-<li>localStorage: <code>cookieConsent_v1</code> — preferencje cookies</li>
-</ul>
-<p class="mt-3">Więcej informacji: skontaktuj się e‑mailem.</p>
+
+  <!-- Skrócona wersja -->
+  <div class="mb-4 rounded-xl border border-slate-200/60 dark:border-slate-700/60 p-4 bg-white/50 dark:bg-slate-900/30">
+    <h3 class="font-semibold mb-2">Polityka prywatności — skrót</h3>
+    <ul class="list-disc pl-5 space-y-1">
+      <li><strong>Administrator:</strong> Adam Skalski — <a class="underline" href="mailto:skalski.masaz@gmail.com">skalski.masaz@gmail.com</a>, tel. <a class="underline" href="tel:+48886886028">+48&nbsp;886&nbsp;886&nbsp;028</a>.</li>
+      <li><strong>Cel:</strong> obsługa zapytań i rezerwacji (imię, usługa, adres, termin, pora dnia, treść wiadomości).</li>
+      <li><strong>Podstawa prawna:</strong> art. 6 ust. 1 lit. b i f RODO.</li>
+      <li><strong>Odbiorcy:</strong> dostawcy hostingu i poczty (umowy powierzenia), bez przekazywania do państw trzecich.</li>
+      <li><strong>Okres przechowywania:</strong> do realizacji sprawy + zgodnie z przepisami (np. rozliczenia).</li>
+      <li><strong>Prawa:</strong> dostęp, sprostowanie, usunięcie, ograniczenie, przeniesienie, sprzeciw, skarga do PUODO.</li>
+      <li><strong>Cookies:</strong> niezbędne do działania strony; analityczne (statystyki) domyślnie wyłączone.</li>
+    </ul>
+  </div>
+
+  <!-- Pełna wersja w akordeonie -->
+  <details class="group rounded-xl border border-slate-200/60 dark:border-slate-700/60 p-4 bg-white/40 dark:bg-slate-900/20">
+    <summary class="cursor-pointer select-none font-medium flex items-center justify-between">
+      Pełna informacja RODO i cookies
+      <span class="ml-3 text-xs opacity-70 group-open:hidden">rozwiń</span>
+      <span class="ml-3 text-xs opacity-70 hidden group-open:inline">zwiń</span>
+    </summary>
+
+    <div class="mt-3 space-y-3 leading-relaxed">
+      <p>
+        <strong>Administrator danych:</strong> Adam Skalski (działalność mobilna, Wrocław i okolice),
+        kontakt: <a class="underline" href="mailto:skalski.masaz@gmail.com">skalski.masaz@gmail.com</a>,
+        tel. <a class="underline" href="tel:+48886886028">+48&nbsp;886&nbsp;886&nbsp;028</a>.
+      </p>
+
+      <p>
+        Przetwarzam dane wyłącznie w celu obsługi zapytań i rezerwacji wizyt:
+        imię, wybrana usługa, adres wizyty, preferowana data i pora dnia, treść wiadomości.
+        Podanie danych jest dobrowolne, ale niezbędne do realizacji zapytania lub umówienia wizyty.
+      </p>
+
+      <p>
+        <strong>Podstawa prawna:</strong> art. 6 ust. 1 lit. b RODO (działania przed zawarciem umowy)
+        oraz art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes administratora).
+        <strong>Odbiorcy:</strong> dostawcy hostingu i poczty e-mail na podstawie umów powierzenia.
+        Dane nie są przekazywane do państw trzecich.
+      </p>
+
+      <p>
+        <strong>Okres przechowywania:</strong> przez czas niezbędny do obsługi zapytania lub realizacji wizyty,
+        a następnie przez okres wymagany przepisami (np. dla celów rozliczeniowych).
+      </p>
+
+      <p>
+        <strong>Twoje prawa:</strong> dostępu do danych, ich sprostowania, usunięcia, ograniczenia przetwarzania,
+        przenoszenia oraz wniesienia sprzeciwu. Masz również prawo do złożenia skargi
+        do <strong>Prezesa Urzędu Ochrony Danych Osobowych</strong>.
+      </p>
+
+      <hr class="border-slate-200/60 dark:border-slate-700/60">
+
+      <h4 class="font-semibold">Cookies i localStorage</h4>
+      <p>
+        Używam cookies <em>niezbędnych</em> do działania strony (zapamiętanie motywu, zgody na cookies)
+        oraz opcjonalnych cookies <em>analitycznych</em> do statystyk. Cookies analityczne są domyślnie wyłączone.
+      </p>
+      <ul class="list-disc pl-5">
+        <li><code>localStorage: theme</code> — zapis wybranego motywu strony.</li>
+        <li><code>localStorage: cookieConsent_v1</code> — zapis preferencji cookies.</li>
+      </ul>
+
+      <p>Więcej informacji otrzymasz, kontaktując się e-mailowo.</p>
+    </div>
+  </details>
 </div>
 <div class="border-t border-slate-200 p-4 text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">Ostatnia aktualizacja: sierpień 2025</div>
 </div>
